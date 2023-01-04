@@ -10,8 +10,8 @@ import java.util.concurrent.CountDownLatch;
 public class Moniteur {
 
     private String chemin;
-    private int nbMapper = 30;
-    private int nbReducer = 30;
+    private int nbMapper = 5;
+    private int nbReducer = 3;
 
 
     public Moniteur(String unChemin) {
@@ -22,18 +22,20 @@ public class Moniteur {
         FileReader fichier = new FileReader(chemin);
         BufferedReader buffer = new BufferedReader(fichier);
         String ligne;
-        //String texte = "";
         ArrayList<String> liste_sous_textes = new ArrayList<String>();
         for (int j = 0; j < nbMapper; j++) {
             liste_sous_textes.add("");
         } 
         int compteur = 0;
         while ((ligne = buffer.readLine()) != null) {
-            String nouvelle_valeur = liste_sous_textes.get(compteur%nbMapper) + ligne;
+            ligne = ligne.replace("_", " ");
+            ligne = ligne.replace("'", " ");
+            String nouvelle_valeur = liste_sous_textes.get(compteur%nbMapper) + " " + ligne;
             liste_sous_textes.set(compteur%nbMapper, nouvelle_valeur);
-            //texte += ligne;
             compteur++;
         }
+        //System.out.println(compteur);
+        //System.out.println(liste_sous_textes);
 
         buffer.close();
 
@@ -47,8 +49,6 @@ public class Moniteur {
             test.start();
         }
         compte_a_rebours.await();
-        //System.out.println("Normalement, tout est bon...");
-        //System.out.println(res_mappers);
 
         HashMap<String, Integer> res_reducer = new HashMap<String, Integer>();
         CountDownLatch compte_a_rebours_2 = new CountDownLatch(nbReducer);
@@ -57,10 +57,8 @@ public class Moniteur {
             test.start();
         }
         compte_a_rebours_2.await();
+        System.out.println(res_reducer);
         System.out.println("\n\nCroisons les doigts c'est bon !\n" + sortHashMap(res_reducer)+  "\n");
-
-
-        
 
     }
 

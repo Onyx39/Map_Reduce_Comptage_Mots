@@ -20,12 +20,14 @@ public class Reducer extends Thread {
         Set<String> liste_cle = a_reduire.keySet();
         for (String cle : liste_cle) {
             ArrayList<Integer> maListe = a_reduire.get(cle);
-            Integer occurrence = maListe.stream().mapToInt(i -> i).sum();
+            Integer occurrence = 0;
+            for (int j = 0; j < maListe.size(); j++) {
+                occurrence += maListe.get(j);
+            }
+            //Integer occurrence = maListe.stream().mapToInt(i -> i).sum();
             resultats.put(cle, occurrence);
         }
         compte_a_rebours.countDown();
-
-
     }
 
 }
