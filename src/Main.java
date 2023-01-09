@@ -7,12 +7,12 @@ public class Main {
         long start = System.currentTimeMillis();
         
         
-        Moniteur moniteurTest = new Moniteur ("src/data/data3.txt");
+        Moniteur moniteurTest = new Moniteur ("src/data/data2.txt", 5, 3);
         moniteurTest.executerProcessus();
 
         long end = System.currentTimeMillis();
         long temps_execution = end - start;
-        System.out.println("\nTemps d'exec : " + temps_execution + "\n");
+        System.out.println("\nTemps d'exec : " + temps_execution+ "\n");
 
     }
 }

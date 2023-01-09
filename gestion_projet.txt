@@ -1,4 +1,0 @@
-But : Map Reduce comtage de mots
-
-Language  : Java
-Méthode  : MultiThreads
