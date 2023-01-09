@@ -31,27 +31,11 @@ public class Moniteur {
         } 
         int compteur = 0;
         while ((ligne = buffer.readLine()) != null) {
-            ligne = ligne.replace("_", " ");
-            ligne = ligne.replace("'", " ");
-            ligne = ligne.replace(",", " ");
-            ligne = ligne.replace(".", " ");
-            ligne = ligne.replace(";", " ");
-            ligne = ligne.replace(":", " ");
-            ligne = ligne.replace("(", " ");
-            ligne = ligne.replace(")", " ");
-            ligne = ligne.replace("[", " ");
-            ligne = ligne.replace("]", " ");
-            ligne = ligne.replace("--", " ");
-            ligne = ligne.replace("»", " ");
-            ligne = ligne.replace("?", " ");
-            ligne = ligne.replace("!", " ");
-            ligne = ligne.replace("\"", " ");            
+            ligne = ligne.replaceAll("[^\\p{L}\\p{M}\\-]+", " ");     
             String nouvelle_valeur = liste_sous_textes.get(compteur%nbMapper) + " " + ligne;
             liste_sous_textes.set(compteur%nbMapper, nouvelle_valeur);
             compteur++;
         }
-        //System.out.println(compteur);
-        //System.out.println(liste_sous_textes);
 
         buffer.close();
 
@@ -73,10 +57,8 @@ public class Moniteur {
             test.start();
         }
         compte_a_rebours_2.await();
-        //System.out.println(res_reducer);
-        /*System.out.println("\n\nCroisons les doigts c'est bon !\n" + sortHashMap(res_reducer) + "\n"
-            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));*/
-        System.out.println(compteMotTotal(res_reducer));
+        System.out.println("\n\nCroisons les doigts c'est bon !\n" + sortHashMap(res_reducer) + "\n"
+            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));
 
     }
 

@@ -40,7 +40,14 @@ public class Mapper extends Thread {
     public void remplirDictionnaire () {
         String[] mots = texte_a_traiter.split("\\s+");
         for (String mot : mots) {
-            if (mot.length() > 2 && mot.matches("\\b[\\p{L}\\p{M}\\p{Pd}]+\\b")) {
+            while (mot.matches("-[\\p{L}\\p{M}\\-]+")) {
+                mot = mot.substring(1);
+            }
+            
+            while (mot.matches("[\\p{L}\\p{M}\\-]+-")) {
+                mot = mot.substring(0, mot.length() - 1);
+            }
+            if (mot.length() > 2 ) {
                 if (dictionnaire.containsKey(mot)) {
                     Integer nouvelle_valeur = dictionnaire.get(mot) + 1;
                     dictionnaire.put(mot, nouvelle_valeur);
@@ -48,7 +55,7 @@ public class Mapper extends Thread {
             else {dictionnaire.put(mot, 1);}
             }
         }
-        //System.out.println(dictionnaire);
+        System.out.println(dictionnaire);
     }
 
     public String getTexte_a_traiter() {
