@@ -24,8 +24,9 @@ public class Reducer extends Thread {
             for (int j = 0; j < maListe.size(); j++) {
                 occurrence += maListe.get(j);
             }
-            //Integer occurrence = maListe.stream().mapToInt(i -> i).sum();
-            resultats.put(cle, occurrence);
+            synchronized(resultats) {
+                resultats.put(cle, occurrence);
+            }
         }
         compte_a_rebours.countDown();
     }

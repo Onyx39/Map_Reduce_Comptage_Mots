@@ -21,14 +21,17 @@ public class Mapper extends Thread {
         remplirDictionnaire();
         Set<String> cles = dictionnaire.keySet();
         for (String cle : cles) {
-            int index = Math.abs(cle.hashCode()%resultats.size());
-            if (resultats.get(index).containsKey(cle)) {
-                resultats.get(index).get(cle).add(dictionnaire.get(cle));
+            synchronized(resultats) {
+                int index = Math.abs(cle.hashCode()%resultats.size());
+                if (resultats.get(index).containsKey(cle)) {
+                    resultats.get(index).get(cle).add(dictionnaire.get(cle));
+                }
+                else{
+                    ArrayList<Integer> truc = new ArrayList<>();
+                    truc.add(dictionnaire.get(cle));
+                    resultats.get(index).put(cle, truc);
+                };
             }
-            else{
-                ArrayList<Integer> truc = new ArrayList<>();
-                truc.add(dictionnaire.get(cle));
-                resultats.get(index).put(cle, truc);};
 
         }
         compte_a_rebours.countDown();

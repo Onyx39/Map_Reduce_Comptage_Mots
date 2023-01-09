@@ -74,8 +74,9 @@ public class Moniteur {
         }
         compte_a_rebours_2.await();
         //System.out.println(res_reducer);
-        System.out.println("\n\nCroisons les doigts c'est bon !\n" + sortHashMap(res_reducer) + "\n"
-            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));
+        /*System.out.println("\n\nCroisons les doigts c'est bon !\n" + sortHashMap(res_reducer) + "\n"
+            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));*/
+        System.out.println(compteMotTotal(res_reducer));
 
     }
 
