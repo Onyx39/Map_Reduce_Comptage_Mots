@@ -17,17 +17,22 @@ public class Reducer extends Thread {
     }
 
     public void run () {
+        // On récupère l'ensemble des clés du Reducer pour le parcourir
         Set<String> liste_cle = a_reduire.keySet();
         for (String cle : liste_cle) {
             ArrayList<Integer> maListe = a_reduire.get(cle);
             Integer occurrence = 0;
+            // On fait une boucle pour ajouter toutes les occurrences du mot présent dans la liste associée
             for (int j = 0; j < maListe.size(); j++) {
                 occurrence += maListe.get(j);
             }
+            // On synchronise 'resultats' car la variable est partagée
+            // On ajoute le mot et son occurrence total
             synchronized(resultats) {
                 resultats.put(cle, occurrence);
             }
         }
+        // Le Reducer a terminé, on décrémente le compte à rebours
         compte_a_rebours.countDown();
     }
 

@@ -4,15 +4,22 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        // Enregistre le temps actuel 
         long start = System.currentTimeMillis();
+
         
-        
-        Moniteur moniteurTest = new Moniteur ("src/data/data3.txt", 5, 3);
-        moniteurTest.executerProcessus();
+        // Création d'un moniteur qui va gérer le fichier dont le chemin est spécifié en paramètre
+        // On peut préciser le nombre de Mapper et de Reducer voulu (3 par défaut)
+        Moniteur moniteur = new Moniteur ("src/data/bible.txt", 15, 15);
+        // Démarre le travail du moniteur
+        moniteur.demarrer();
+
 
         long end = System.currentTimeMillis();
+        // Calcul du temps d'execution du programme
         long temps_execution = end - start;
-        System.out.println("\nTemps d'exec : " + temps_execution+ "\n");
+
+        System.out.println("\nTemps d'execution du programme : " + temps_execution+ "\n");
 
     }
 }
