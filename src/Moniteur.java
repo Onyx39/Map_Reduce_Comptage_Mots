@@ -13,18 +13,35 @@ public class Moniteur {
     private String chemin;
     private int nbMapper;
     private int nbReducer;
+    private boolean affichageResultat;
 
-
-    public Moniteur(String unChemin, int unNbMapper, int unNbReducer) {
-        chemin = unChemin;
-        nbMapper = unNbMapper;
-        nbReducer = unNbReducer;
-    }
 
     public Moniteur(String unChemin) {
         chemin = unChemin;
         nbMapper = 3;
         nbReducer = 3;
+        affichageResultat = false;
+    }
+
+    public Moniteur(String unChemin, boolean unBool) {
+        chemin = unChemin;
+        nbMapper = 3;
+        nbReducer = 3;
+        affichageResultat = unBool;
+    }
+
+    public Moniteur(String unChemin, int unNbMapper, int unNbReducer) {
+        chemin = unChemin;
+        nbMapper = unNbMapper;
+        nbReducer = unNbReducer;
+        affichageResultat = false;
+    }
+
+    public Moniteur(String unChemin, int unNbMapper, int unNbReducer, boolean unBool) {
+        chemin = unChemin;
+        nbMapper = unNbMapper;
+        nbReducer = unNbReducer;
+        affichageResultat = unBool;
     }
 
     public void demarrer () throws IOException, InterruptedException {
@@ -42,7 +59,7 @@ public class Moniteur {
         } 
 
         // Permet de compter le nombre de boucle déjà réalisé
-        // Servira pour le modulo
+        // Compteur qui servira pour le modulo
         int compteur = 0;
         String ligne;
         // Remplissage de la liste
@@ -91,8 +108,10 @@ public class Moniteur {
 
         // Permet d'afficher le dictionnaire final trié dasn l'ordre alphabétique
         // Attention : méthode lourde pour les grands fichiers
-        /*System.out.println("\n\nCroisons les doigts c'est bon !\n" + sortHashMap(res_reducer) + "\n"
-            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));*/
+        if (affichageResultat) {
+        System.out.println("\n\nRésultat du prgramme : \n" + sortHashMap(res_reducer) + "\n"
+            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));
+        }
 
     }
 

@@ -10,7 +10,8 @@ public class Main {
         
         // Création d'un moniteur qui va gérer le fichier dont le chemin est spécifié en paramètre
         // On peut préciser le nombre de Mapper et de Reducer voulu (3 par défaut)
-        Moniteur moniteur = new Moniteur ("src/data/bible.txt", 15, 15);
+        // Ajouter le booléan true si vous voulez afficher le résultat dans la console
+        Moniteur moniteur = new Moniteur ("src/data/data1.txt", 15, 5, true);
         // Démarre le travail du moniteur
         moniteur.demarrer();
 
