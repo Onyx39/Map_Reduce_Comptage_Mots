@@ -33,7 +33,7 @@ public class Reducer extends Thread {
             }
         }
         // Le Reducer a terminé, on décrémente le compte à rebours
-        compte_a_rebours.countDown();
+        synchronized(compte_a_rebours){compte_a_rebours.countDown();};
     }
 
 }

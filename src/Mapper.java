@@ -41,7 +41,7 @@ public class Mapper extends Thread {
 
         }
         // Le Mapper a terminé son travail, on décrémente le compte à rebours
-        compte_a_rebours.countDown();
+        synchronized(compte_a_rebours){compte_a_rebours.countDown();};
     }
 
     public void remplirDictionnaire () {

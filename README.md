@@ -40,7 +40,7 @@ Voici les différents tests et résultats obtenus :
 - Reducer = 10 / Mapper = 20 : 8sec
 
 Sachant que ces résultats dépendent beaucoup de la machine, nous les avons traités sur une machine assez ancienne (2014) ayant deux coeurs.
-Les résultats peuvent donc être plus performants et plus flagrants sur une machine plus puissante
+Les résultats peuvent donc être plus performants et plus flagrants sur une machine plus puissante.
 
 Nous avons remarqué que plus nous augmentions le nombre de Mappers et de Réducers, moins le temps d'éxecution avait une grosse différence, car la création des Mappers et des Reducers prend aussi du temps.
 De plus, nous avons remarqué qu'il est plus efficace d'augmenter le nombre de Mappers que le nombre de Reducers.

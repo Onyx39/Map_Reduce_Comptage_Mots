@@ -109,8 +109,8 @@ public class Moniteur {
         // Permet d'afficher le dictionnaire final trié dasn l'ordre alphabétique
         // Attention : méthode lourde pour les grands fichiers
         if (affichageResultat) {
-        System.out.println("\n\nRésultat du prgramme : \n" + sortHashMap(res_reducer) + "\n"
-            + "Nombre de mots comptés : " + compteMotTotal(res_reducer));
+        System.out.println("\n\nRésultat du programme : \n" + sortHashMap(res_reducer)
+            + "\n\nNombre de mots comptés : " + compteMotTotal(res_reducer));
         }
 
     }
